@@ -1632,7 +1632,7 @@ class Chromosome():
     
     def annotate_variants(self, annotation_subset=None):
         if (
-            self.variants_have_been_sorte and self.annotations_have_been_sorted
+            self.variants_have_been_sorted and self.annotations_have_been_sorted
         ):
             annotations_per_variant = annotate_variants(
                 variant_positions=tuple(
