@@ -1965,18 +1965,15 @@ class Locus():
             prior12=prior12
         )
     
-    def collect_lnbfs_for_coloc(self, trait1, trait2, handle_nans=False):
+    def collect_lnbfs_for_coloc(self, *traits, handle_nans=False):
         return zip(
             *(
-                (v.traits[trait1]['lnbf'], v.traits[trait2]['lnbf'])
+                tuple(v.traits[trait]['lnbf'] for trait in traits)
                 for v in self.variants
-                if v.traits.get(trait1) and v.traits.get(trait2)
-                if v.traits[trait1].get('lnbf') and v.traits[trait2].get('lnbf')
+                if all((v.traits.get(trait) is not None) for trait in traits) 
+                if all((v.traits[trait].get('lnbf') is not None) for trait in traits)
                 if (not handle_nans) or not any(
-                    (
-                        math.isnan(v.traits[trait1]['lnbf']),
-                        math.isnan(v.traits[trait2]['lnbf'])
-                    )
+                    math.isnan(v.traits[trait]['lnbf']) for trait in traits
                 )
             )
         )
