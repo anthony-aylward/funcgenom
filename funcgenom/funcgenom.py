@@ -1970,13 +1970,7 @@ class Locus():
         trait1,
         trait2,
         trait3,
-        prior1: float = 1e-4,
-        prior2: float = 1e-4,
-        prior3: float = 1e-4,
-        prior12: float = 1e-6,
-        prior23: float = 1e-6,
-        prior13: float = 1e-6,
-        prior123: float = 1e-7,
+        priors=(1e-4, 1e-6, 1e-7),
     ):
         trait1_lnbfs, trait2_lnbfs, trait3_lnbfs = self.collect_lnbfs_for_coloc(
             trait1,
@@ -1987,13 +1981,7 @@ class Locus():
             trait1_lnbfs,
             trait2_lnbfs,
             trait3_lnbfs,
-            prior1=prior1,
-            prior2=prior2,
-            prior3=prior3,
-            prior12=prior12,
-            prior23=prior23,
-            prior13=prior13,
-            prior123=prior123,
+            priors=priors,
         )
     
     def collect_lnbfs_for_coloc(self, *traits, handle_nans=False):
