@@ -1732,6 +1732,7 @@ class Locus():
             for locus in self.chromosome.loci
             for variant in locus.variants
         }
+        # .union({variant.position for variant in self.variants})
         if ld_threshold:
             positions_in_ld = get_positions_ld(
                 chromosome=self.chromosome.char,
