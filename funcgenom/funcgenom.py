@@ -1685,9 +1685,13 @@ class Locus():
         name,
         chromosome,
         interval=None,
-        index_variants=[], 
-        variants=[]
+        index_variants=None,
+        variants=None
     ):
+        if index_variants is None:
+            index_variants = []
+        if variants is None:
+            variants = []
         if not (interval or variants):
             raise BadArgumentError(
                 'Either an interval or a list of variants must be specified.'
