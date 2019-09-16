@@ -1921,8 +1921,7 @@ class Locus():
             (
                 (variant.traits[trait]['lnbf'], variant)
                 for variant in self.variants if variant.traits.get(trait) if (
-                    variant.traits[trait].get('lnbf')
-                    or variant.traits[trait].get('lnbf') == 0
+                    variant.traits[trait].get('lnbf') is not None
                 )
             ),
             key=operator.itemgetter(0),
