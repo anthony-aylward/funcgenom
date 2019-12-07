@@ -2021,7 +2021,7 @@ class Locus():
         for trait in traits:
             plotting_data[trait] = [
                 (
-                    variant.traits[trait].get('lnbf')
+                    variant.traits[trait].get('pval')
                     if variant.traits.get(trait) else None
                 )
                 for variant in variants
