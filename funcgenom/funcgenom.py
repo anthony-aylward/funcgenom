@@ -425,7 +425,8 @@ class Genome():
         cell='cell',
         delimiter=None,
         add_chromosomes=True,
-        add_loci=True
+        add_loci=True,
+        graceful=False
     ):
         genes, variant_coordinates = separate_genes_and_variants(
             genes_and_variants
@@ -564,10 +565,19 @@ class Genome():
                     )
                 except KeyError:
                     if add_chromosomes:
-                        self.add_chromosome(variant.chromosome)
-                        self.chromosome[variant.chromosome].variants.append(
-                            variant
-                        )
+                        if graceful:
+                            try:
+                                self.add_chromosome(variant.chromosome)
+                                self.chromosome[variant.chromosome].variants.append(
+                                    variant
+                                )
+                            except:
+                                pass
+                        else:
+                            self.add_chromosome(variant.chromosome)
+                            self.chromosome[variant.chromosome].variants.append(
+                                variant
+                            )
         if eqtl_mapping_file_suffix == '.gz':
             os.remove(temp_eqtl_mapping_file_path)
         if add_loci:

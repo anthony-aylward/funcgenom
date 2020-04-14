@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name='funcgenom',
-    version='0.1.6',
+    version='0.1.7',
     author='Anthony Aylward',
     author_email='aaylward@eng.ucsd.edu',
     description='Classes and functions for functional genomics analysis',
